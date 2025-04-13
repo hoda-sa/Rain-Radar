@@ -45,8 +45,10 @@ function App() {
             {forecastData && <ForecastList data={forecastData} units={units} />}
           </div>
         )}
-        
+
+        <hr className='mt-5' />
         <div className="features-section mt-5 mb-4">
+          <h2 className='text-center pb-3'>WHAT THIS APP OFFERS</h2>
           <div className="row">
             <div className="col-md-4 mb-4">
               <div className="card h-100 border-0 shadow-sm">
@@ -74,9 +76,9 @@ function App() {
               <div className="card h-100 border-0 shadow-sm">
                 <div className="card-body text-center">
                   <i className="bi bi-lightning text-warning fs-1 mb-3"></i>
-                  <h4>Fast & Responsive</h4>
+                  <h4>Fast & Intuitive</h4>
                   <p className="text-muted">
-                    Experience our lightning-fast, responsive design that works on all devices.
+                    Experience our lightning-fast, intuitive design that works smoothly.
                   </p>
                 </div>
               </div>

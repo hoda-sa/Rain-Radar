@@ -4,10 +4,13 @@ import WeatherIcon from './WeatherIcon';
 const Header = () => {
   return (
     <header className="bg-primary text-white py-3">
-      <div className="container">
-        <div className="d-flex align-items-center">
-          <WeatherIcon iconCode="01d" size="2x" />
-          <h1 className="mb-0 ms-3">Weather Forecasting App</h1>
+      <div className="container d-flex flex-row">
+        <div>
+          <WeatherIcon iconCode="09d" size="3x" />
+        </div>
+        <div>
+          <h1 className="mb-0 ms-3 ">Rain Radar</h1>
+          <p className="mb-0 ms-3">Rain or shine, always keeping you prepared</p>
         </div>
       </div>
     </header>
