@@ -1,4 +1,4 @@
-# Weather Forecasting App
+# Rain Radar
 
 A modern, responsive React application for checking weather forecasts using the OpenWeatherMap API.
 
