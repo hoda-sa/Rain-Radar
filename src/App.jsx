@@ -1,35 +1,92 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import CurrentWeather from './components/CurrentWeather';
+import ForecastList from './components/ForecastList';
+import UnitToggle from './components/UnitToggle';
+import LoadingSpinner from './components/LoadingSpinner';
+import ErrorAlert from './components/ErrorAlert';
+import Footer from './components/Footer';
+import useWeather from './utils/useWeather';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    weatherData,
+    forecastData,
+    loading,
+    error,
+    units,
+    handleSearch,
+    handleUnitChange
+  } = useWeather('New York');
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <Header />
+      <main className="container py-4">
+        <div className="row justify-content-center mb-4">
+          <div className="col-md-8">
+            <SearchBar onSearch={handleSearch} />
+          </div>
+          <div className="col-md-4 d-flex align-items-center justify-content-end">
+            <UnitToggle units={units} onUnitChange={handleUnitChange} />
+          </div>
+        </div>
+
+        {loading ? (
+          <LoadingSpinner />
+        ) : error ? (
+          <ErrorAlert message={error} />
+        ) : (
+          <div className="weather-content fade-in">
+            {weatherData && <CurrentWeather data={weatherData} units={units} />}
+            {forecastData && <ForecastList data={forecastData} units={units} />}
+          </div>
+        )}
+        
+        <div className="features-section mt-5 mb-4">
+          <div className="row">
+            <div className="col-md-4 mb-4">
+              <div className="card h-100 border-0 shadow-sm">
+                <div className="card-body text-center">
+                  <i className="bi bi-globe text-primary fs-1 mb-3"></i>
+                  <h4>Global Coverage</h4>
+                  <p className="text-muted">
+                    Access real-time weather data for cities worldwide with our comprehensive coverage.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 mb-4">
+              <div className="card h-100 border-0 shadow-sm">
+                <div className="card-body text-center">
+                  <i className="bi bi-graph-up text-success fs-1 mb-3"></i>
+                  <h4>5-Day Forecast</h4>
+                  <p className="text-muted">
+                    Plan ahead with accurate 5-day weather forecasts for your location.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 mb-4">
+              <div className="card h-100 border-0 shadow-sm">
+                <div className="card-body text-center">
+                  <i className="bi bi-lightning text-warning fs-1 mb-3"></i>
+                  <h4>Fast & Responsive</h4>
+                  <p className="text-muted">
+                    Experience our lightning-fast, responsive design that works on all devices.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
