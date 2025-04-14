@@ -44,7 +44,6 @@ Check out the live demo [here](https://weather-app-1tor.onrender.com).
    ```
    VITE_API_KEY=your_api_key_here
    ```
-   Note: For this project, we're using the provided API key "52619a520cebfbf1411d80c82205fd69"
 
 4. Start the development server:
    ```bash
@@ -108,9 +107,8 @@ This will create a `dist` folder with the production-ready files.
 - Add geolocation to automatically detect user's location
 - Include more detailed hourly forecasts
 - Add weather maps
-- Implement dark/light theme toggle
 - Add weather alerts and notifications
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License. 

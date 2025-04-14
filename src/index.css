@@ -88,11 +88,11 @@ body {
 
 .night-bg {
   background: var(--gradient-night);
-  color: #fff;
+  color: #333;
 }
 
 .night-bg .text-muted {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: #333 !important;
 }
 
 .night-bg .detail-item {

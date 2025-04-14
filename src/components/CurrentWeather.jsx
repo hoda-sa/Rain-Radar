@@ -12,6 +12,7 @@ const CurrentWeather = ({ data, units }) => {
     main: { temp, feels_like, humidity, pressure, temp_min, temp_max },
     wind: { speed },
     visibility,
+    timezone // Timezone offset in seconds from UTC
   } = data;
 
   const weatherDescription = weather[0].description;
@@ -20,23 +21,30 @@ const CurrentWeather = ({ data, units }) => {
   const tempUnit = units === 'metric' ? '°C' : '°F';
   const windUnit = units === 'metric' ? 'm/s' : 'mph';
 
-  // Format date
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString('en-US', {
+  // Calculate city's local time using timezone offset
+  const cityDate = new Date();
+  // Adjust for the city's timezone
+  // First get UTC time in ms
+  const utcTime = cityDate.getTime() + (cityDate.getTimezoneOffset() * 60000);
+  // Then add the city's timezone offset (converting from seconds to milliseconds)
+  const cityTime = new Date(utcTime + (timezone * 1000));
+  
+  // Format date for the city
+  const formattedDate = cityTime.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
   
-  // Get time
-  const formattedTime = currentDate.toLocaleTimeString('en-US', {
+  // Format time for the city
+  const formattedTime = cityTime.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
   });
   
-  // Determine time of day for background styling
-  const hour = currentDate.getHours();
+  // Determine time of day for background styling based on city's local time
+  const hour = cityTime.getHours();
   let timeClass = '';
   
   if (hour >= 5 && hour < 12) {
@@ -73,7 +81,7 @@ const CurrentWeather = ({ data, units }) => {
               </h2>
               <p className="text-muted mb-1">{formattedDate}</p>
               <p className="text-muted mb-3">
-                <i className="bi bi-clock me-1"></i> {formattedTime}
+                <i className="bi bi-clock me-1"></i> {formattedTime} <small>(Local Time)</small>
               </p>
             </div>
             
