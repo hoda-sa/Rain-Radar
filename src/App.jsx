@@ -20,17 +20,17 @@ function App() {
     units,
     handleSearch,
     handleUnitChange
-  } = useWeather('New York');
+  } = useWeather('Vancouver');
 
   return (
     <div className="app-container">
       <Header />
       <main className="container py-4">
         <div className="row justify-content-center mb-4">
-          <div className="col-md-8">
+          <div className="col-md-8 my-2">
             <SearchBar onSearch={handleSearch} />
           </div>
-          <div className="col-md-4 d-flex align-items-center justify-content-end">
+          <div className="col-md-4 my-2 d-flex align-items-center justify-content-end">
             <UnitToggle units={units} onUnitChange={handleUnitChange} />
           </div>
         </div>
