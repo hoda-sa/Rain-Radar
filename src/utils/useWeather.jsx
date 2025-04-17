@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchWeatherByCity, fetchForecastByCity } from './weatherApi';
 
-// Creating a hook that accepts a default city (New York if none provided)
+// Creating a hook that accepts a default city (Vancouver if none provided)
 const useWeather = (defaultCity = 'vancouver') => {
     // Setting up state variables to store information
     const [weatherData, setWeatherData] = useState(null);  // Current weather
@@ -51,13 +51,14 @@ const useWeather = (defaultCity = 'vancouver') => {
         if (city) {
             fetchWeatherData(city);
         }
-    }, [units]);
+    }, [units]); // The dependency array - this effect runs when units changes
 
     // Initial fetch on component mount
     useEffect(() => {
         fetchWeatherData(defaultCity); // Load initial weather data
     }, []); // Empty dependency array means "run once on mount"
 
+    // Return all the data and functions that components might need
     return {
         weatherData,
         forecastData,

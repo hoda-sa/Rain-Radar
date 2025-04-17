@@ -1,6 +1,20 @@
+
 import React from 'react';
 
+/**
+ * UnitToggle functional component
+ * 
+ * @param {Object} props - Component props
+ * @param {string} props.units - Current unit system ('metric' or 'imperial')
+ * @param {Function} props.onUnitChange - Callback function to handle unit changes
+ * @returns {JSX.Element} - Rendered toggle button component
+ */
 const UnitToggle = ({ units, onUnitChange }) => {
+
+  /**
+   * Toggles between metric and imperial units
+   * Switches from the current unit to the alternative
+   */
   const handleToggle = () => {
     const newUnit = units === 'metric' ? 'imperial' : 'metric';
     onUnitChange(newUnit);
