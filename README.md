@@ -158,7 +158,6 @@ This generates optimized files in the `dist` directory that can be deployed to a
 - **Weather Alerts**: Display severe weather warnings for selected locations
 - **Favorites**: Allow users to save frequently checked locations
 - **Historical Data**: View past weather patterns and trends
-- **PWA Support**: Enable offline functionality and home screen installation
 
 ## 📄 License
 
