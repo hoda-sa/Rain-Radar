@@ -161,4 +161,4 @@ This generates optimized files in the `dist` directory that can be deployed to a
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+Copyright © 2025 Hoda Co. All rights reserved.
